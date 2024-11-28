@@ -1,0 +1,25 @@
+{
+  "name": "backend-nextjs-dashboard",
+  "version": "1.0.0",
+  "description": "Backend nextjs dashboard",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node --env-file=.env.local --watch index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "2.8.5",
+    "express": "4.21.1",
+    "mongodb": "6.10.0",
+    "mongoose": "8.8.3",
+    "zod": "3.23.8"
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "^9.1.0",
+    "prettier": "^3.4.1",
+    "standard": "^17.1.2"
+  }
+}

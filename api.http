@@ -1,0 +1,6 @@
+### Get revenues
+GET http://localhost:1234/revenues
+
+### Crear un revenue con POST
+POST http://localhost:1234/revenues
+Content-Type: application/json
