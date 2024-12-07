@@ -1,0 +1,15 @@
+### Get customers
+GET http://localhost:1234/customers
+
+### Create customer
+POST http://localhost:1234/customers
+Content-Type: application/json
+
+{
+  "name": "Balazs Orban",
+  "email": "balazs@orban.com",
+  "image_url": "/customers/balazs-orban.png"
+}
+
+### Delete customer
+DELETE http://localhost:1234/customers/674baffb95382e3f72791847
