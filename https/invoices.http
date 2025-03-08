@@ -1,0 +1,16 @@
+### Get invoices
+GET http://localhost:1234/invoices?per_page=5
+
+### Create invoices
+POST http://localhost:1234/invoices
+Content-Type: application/json
+
+{
+  "customer": "67546f6f608c68e989eccfb7",
+  "amount": 1000,
+  "date": "2022-06-05",
+  "status": "paid"
+}
+
+### Delete invoice
+DELETE http://localhost:1234/invoices/67b2408192259f7445509241

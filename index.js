@@ -5,6 +5,7 @@ import { corsMiddleware } from "./middlewares/cors.js"
 import { customersRouter } from "./routes/customers.js"
 import { notFound } from "./middlewares/notFound.js"
 import { handleErrors } from "./middlewares/handleErrors.js"
+import { invoicesRouter } from "./routes/invoices.js"
 
 connection()
 
@@ -14,6 +15,7 @@ app.disable("x-powered-by")
 
 app.use("/revenues", revenuesRouter)
 app.use("/customers", customersRouter)
+app.use("/invoices", invoicesRouter)
 
 app.use(notFound)
 app.use(handleErrors)
