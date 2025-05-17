@@ -11,6 +11,7 @@ connection()
 
 const app = express()
 app.use(json())
+app.use(corsMiddleware())
 app.disable("x-powered-by")
 
 app.use("/revenues", revenuesRouter)

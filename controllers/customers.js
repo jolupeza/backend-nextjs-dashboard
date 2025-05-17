@@ -1,27 +1,62 @@
 import { CustomerModel } from "../models/Customer.js"
+import {
+  validateCustomer,
+  validatePartialCustomer,
+} from "../schemas/customers.js"
 
 export class CustomerController {
-  static async getAll(req, res) {
+  static async getAll(req, res, next) {
     try {
       const customers = await CustomerModel.getAll()
 
       res.json(customers)
     } catch (error) {
-      throw new Error(error)
+      next(error)
     }
   }
 
-  static async store(req, res) {
+  static async store(req, res, next) {
     try {
-      const newCustomer = await CustomerModel.store(req.body)
+      const result = validateCustomer(req.body)
+
+      if (result.error) {
+        return res
+          .status(400)
+          .json({ message: "Invalid data", errors: result.error.errors })
+      }
+
+      const newCustomer = await CustomerModel.store({ input: result.data })
 
       res.status(201).json(newCustomer)
     } catch (error) {
-      throw new Error(error)
+      next(error)
     }
   }
 
-  static async delete(req, res) {
+  static async update(req, res, next) {
+    const { id } = req.params
+
+    try {
+      const result = validatePartialCustomer(req.body)
+
+      if (!result.success) {
+        return res
+          .status(400)
+          .json({ message: "Invalid data", errors: result.error.errors })
+      }
+
+      const updatedCustomer = await CustomerModel.update({
+        id,
+        input: result.data,
+      })
+
+      res.status(201).json(updatedCustomer)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  static async delete(req, res, next) {
     const { id } = req.params
 
     try {
@@ -33,7 +68,7 @@ export class CustomerController {
 
       res.status(204).json({ message: "Customer deleted successfully" })
     } catch (error) {
-      throw new Error(error)
+      next(error)
     }
   }
 }

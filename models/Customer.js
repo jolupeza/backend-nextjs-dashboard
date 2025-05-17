@@ -1,4 +1,5 @@
 import { Schema, model } from "mongoose"
+import { NotFoundError } from "../exceptions/NotFoundError.js"
 
 const customerSchema = new Schema({
   name: String,
@@ -21,15 +22,17 @@ export class CustomerModel {
     return Customer.find({})
   }
 
-  static async store(input) {
+  static async store({ input }) {
     const customer = new Customer(input)
     const savedCustomer = await customer.save()
     return savedCustomer
   }
 
-  static async delete({ id }) {
-    const result = await Customer.findByIdAndDelete(id)
+  static async update({ id, input }) {
+    return await Customer.findByIdAndUpdate(id, input)
+  }
 
-    return result
+  static async delete({ id }) {
+    return await Customer.findByIdAndDelete(id)
   }
 }

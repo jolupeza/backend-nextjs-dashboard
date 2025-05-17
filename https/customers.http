@@ -13,3 +13,11 @@ Content-Type: application/json
 
 ### Delete customer
 DELETE http://localhost:1234/customers/674baffb95382e3f72791847
+
+### Update customer
+PATCH http://localhost:1234/customers/67546ff1608c68e989eccfzz
+Content-Type: application/json
+
+{
+  "email": "other@example.com"
+}

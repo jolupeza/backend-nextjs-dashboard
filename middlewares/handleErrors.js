@@ -9,6 +9,8 @@ const ERROR_HANDLERS = {
 
   TokenExpirerError: (res) => res.status(401).json({ error: "token expired" }),
 
+  NotFoundError: (res) => res.status(404).json({ error: "resource not found" }),
+
   defaultError: (res, error) => {
     console.error(error.name)
     res.status(500).end()
